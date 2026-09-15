@@ -1,97 +1,80 @@
 # RAMP-0
-
 ## Resource-Aggressive Maximization of a Legacy Workstation
 
 > **Can disciplined software and operating-system remediation recover meaningful performance and usability from legacy hardware under a strict $0 budget?**
 
-RAMP-0 is an empirical systems-engineering case study investigating the practical limits of software-based optimization on a constrained legacy workstation.
+RAMP-0 is an empirical systems-engineering case study investigating how far zero-cost software and operating-system remediation can improve a constrained legacy workstation.
 
-The experimental platform is an **HP ProBook 640 G1** equipped with:
+### Experimental platform
 
-* Intel Core i5-4310M
-* 2 physical cores / 4 logical processors
-* 16 GB RAM
-* Intel HD Graphics 4600
-* 500 GB-class mechanical HDD
+**HP ProBook 640 G1**
+
+- Intel Core i5-4310M
+- 2 physical cores / 4 logical processors
+- 16 GB RAM
+- Intel HD Graphics 4600
+- 500 GB-class mechanical HDD
 
 The hardware remains fixed throughout the primary experiment.
 
-## Constraint
+### Constraint
 
 **Hardware expenditure: $0**
 
-The objective is to maximize practical usability without purchasing replacement hardware.
+No hardware replacement is permitted during the primary experiment.
 
-## Target Workloads
+### Target workloads
 
-* Software development
-* Office and productivity work
-* General GUI computing
-* Lightweight gaming
-* CPU-only local LLM inference
+- Software development
+- Office and productivity work
+- General GUI computing
+- Lightweight gaming
+- CPU-only local LLM inference
 
-## Research Questions
+### Research questions
 
-**RQ1.** How much can operating-system remediation reduce resource overhead on legacy hardware?
+**RQ1.** What is the effect of replacing the existing Windows environment with a Linux Mint Xfce environment on resource utilization and system responsiveness?
 
-**RQ2.** Which remediation interventions contribute most to measurable system responsiveness?
+**RQ2.** Which individual post-installation remediation interventions produce measurable improvements against a defined Linux reference configuration?
 
-**RQ3.** Can aggressively quantized CPU-only local inference remain practically useful on constrained hardware?
+**RQ3.** Can an aggressively quantized CPU-only language model provide practically useful offline assistance on the experimental hardware?
 
-**RQ4.** What trade-offs emerge when development, productivity, gaming, and local AI workloads share the same machine?
+**RQ4.** What measurable trade-offs emerge when programming, productivity, gaming, and local AI workloads compete for the same constrained hardware?
 
-## Experimental Method
+### Experimental design
 
-The project follows a controlled:
+RAMP-0 uses two tracks:
 
-**baseline → intervention → measurement → comparison**
+1. **Cumulative remediation:** records the actual progression from Windows to the final optimized workstation.
+2. **Isolated intervention experiments:** restore a defined Linux reference state and vary one intervention when causal attribution is required.
 
-workflow.
+### Baselines
 
-Each intervention is documented with:
+| State | Definition |
+|---|---|
+| B0 | Final Windows configuration before migration |
+| B1 | Fresh Linux Mint Xfce after required updates and before RAMP tuning |
+| B2 | Stabilized Linux reference used for isolated interventions |
 
-1. Context
-2. Hypothesis
-3. Intervention
-4. Measurement
-5. Result
-6. Limitations
-7. Status
+### Evidence policy
 
-Results are recorded from the actual experimental machine rather than estimated from theoretical specifications.
+- **Observed** â€” directly measured or recorded.
+- **Verified** â€” checked against an authoritative or repeatable source.
+- **Inferred** â€” reasoned from observations.
+- **Unverified** â€” insufficient evidence currently exists.
 
-## Evidence Policy
+Expected performance is never presented as measured performance. Failed, neutral and negative interventions are retained.
 
-RAMP-0 distinguishes between:
+### Principle
 
-* **Observed** — directly measured or recorded
-* **Verified** — independently checked against an authoritative source or repeatable test
-* **Inferred** — reasoned from observed evidence
-* **Unverified** — currently unsupported
+> **Optimize aggressively. Measure conservatively. Never let the claim outrun the evidence.**
 
-The project does not treat expected improvements as measured results.
+### Status
 
-## Current Status
-
-**Phase 0 — Experimental setup and baseline capture**
+**Phase 0 â€” Experimental protocol and baseline preparation**
 
 No final performance claims have been made.
 
-## Repository Structure
+### Privacy
 
-```text
-research/       Research questions, hypotheses, methodology and validity
-hardware/       Hardware, firmware and diagnostic records
-baseline/       Pre/post remediation measurements
-remediation/    Individual system interventions
-benchmarks/     Workload-specific measurements
-data/           Raw and processed experimental data
-results/        Tables and figures
-scripts/        Reproducible measurement utilities
-decisions/      Architecture and engineering decision records
-docs/           Supporting technical documentation
-```
-
-## Project Principle
-
-> **Optimize aggressively. Measure conservatively. Never let the claim outrun the evidence.**
+Machine identifiers, product IDs, serial numbers, MAC addresses, credentials, personal files and other sensitive information are excluded from the public research record.

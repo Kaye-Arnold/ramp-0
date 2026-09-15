@@ -1,19 +1,33 @@
-# Secrets
+# RAMP-0 public research repository
+
+# Raw/unreviewed local inventory
+/hardware/raw/
+/baseline/windows/raw/
+/baseline/linux/raw/
+
+# Secrets and credentials
 .env
 .env.*
 *.pem
 *.key
 *.p12
 *.pfx
-
-# Credentials
 credentials.json
 secrets.json
+token.json
+tokens.json
 
-# OS / editor
+# Machine identifiers
+device-identifiers.txt
+mac-addresses.txt
+serial-numbers.txt
+product-ids.txt
+
+# Editors / OS
 .vscode/
 .idea/
 *.swp
+*.swo
 Thumbs.db
 .DS_Store
 
@@ -22,11 +36,15 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+env/
 
 # Node
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Large/generated data
+# VM/disk images/installers
 *.iso
 *.img
 *.raw
@@ -34,7 +52,11 @@ node_modules/
 *.vmdk
 *.qcow2
 
-# Personal/system identifiers
-device-identifiers.txt
-mac-addresses.txt
-serial-numbers.txt
+# Temporary/generated
+*.tmp
+*.temp
+*.bak
+~*
+
+# Local remediation backups
+.ramp0-backup-*/

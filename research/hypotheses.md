@@ -1,31 +1,80 @@
 # Hypotheses
 
-These hypotheses are propositions to be tested. They are **not established conclusions**.
+These are testable propositions, not assumed conclusions.
 
-## H1 — Lightweight OS
+## H1 â€” Lightweight Environment
 
-Replacing the existing Windows environment with Linux Mint Xfce will reduce idle resource consumption and improve general responsiveness on the experimental workstation.
+**Proposition:** Replacing Windows with Linux Mint Xfce will reduce baseline resource overhead and improve selected responsiveness measures.
 
-## H2 — Memory Pressure
+**Metrics:** idle RAM, idle CPU utilization, median boot time, median application launch time.
 
-A RAM-conscious memory strategy, including zram where appropriate, will reduce reliance on slow HDD-backed swapping during memory pressure.
+**Comparison:** B0 versus B1.
 
-## H3 — Background Workload
+**Decision:** supported only if Linux achieves both at least **15% lower median idle RAM** and at least **10% lower median boot time**. One criterion = partially supported. Neither = not supported.
 
-Reducing unnecessary background services and startup workloads will reduce idle CPU and storage activity.
+## H2 â€” Memory Pressure and HDD Swap Reduction
 
-## H4 — Desktop Effects
+**Proposition:** zram will reduce HDD-backed swap activity during the defined memory-pressure workload.
 
-Restraining compositor effects and visual overhead will improve graphical responsiveness on Intel HD Graphics 4600 without materially reducing GUI usability.
+**Metrics:** peak RAM, zram usage, disk-backed swap, swap-in, swap-out, major page faults, HDD read/write activity, duration.
 
-## H5 — Quantized Local AI
+**Comparison:** B2 without zram versus equivalent B2 with zram.
 
-A sufficiently small and aggressively quantized language model will fit within the system's available memory and remain operational for practical offline experimentation.
+**Decision:** supported if zram reduces disk-backed swap usage by at least **50%** and measured HDD write activity by at least **20%**. One criterion = partially supported. Neither = not supported.
 
-## H6 — AI Performance Ceiling
+## H3 â€” Background Workload Reduction
 
-CPU-only local inference will remain fundamentally limited by the i5-4310M despite operating-system and model-level optimization.
+**Proposition:** Removing non-essential startup/background workloads will reduce idle system activity without breaking required functions.
 
-## H7 — Workload Contention
+**Metrics:** idle CPU, idle RAM, background process count, disk I/O.
 
-Simultaneous AI inference and development or productivity workloads will produce measurable resource contention on the constrained CPU.
+**Comparison:** B2 versus isolated service-remediation configuration.
+
+**Decision:** supported if either median idle RAM or median idle CPU falls by at least **10%**, with no required-function failure.
+
+## H4 â€” Desktop Rendering Efficiency
+
+**Proposition:** Restrained XFCE compositor and visual effects will reduce rendering overhead on Intel HD Graphics 4600.
+
+**Metrics:** CPU utilization during defined desktop workload, rendering/frame-time behaviour where measurable, qualitative stutter observations, functional regressions.
+
+**Comparison:** B2 default/stabilized desktop versus performance-oriented desktop.
+
+**Decision:** supported only if measurable rendering-related overhead decreases with no loss of required desktop functionality. Subjective improvement alone is qualitative evidence.
+
+## H5 â€” Quantized Local AI Feasibility
+
+**Proposition:** At least one small quantized model configuration will execute the predefined offline workload within the available hardware envelope.
+
+**Metrics:** model load time, peak RAM, prompt-processing rate, generation throughput, task completion, task correctness, system responsiveness.
+
+**Decision:** a configuration is practically usable only when all RQ3 criteria are satisfied.
+
+## H6 â€” CPU Inference Limitation
+
+**Proposition:** CPU-only inference will remain a dominant performance bottleneck after OS and model optimization.
+
+**Metrics:** generation throughput, CPU utilization, model load time, RAM consumption, responsiveness.
+
+**Decision:** supported if inference is demonstrably CPU-bound, sustained CPU utilization approaches saturation, and generation remains below the practical-use target despite the selected model fitting the intended memory envelope.
+
+## H7 â€” Workload Contention
+
+**Proposition:** Concurrent local AI inference will measurably degrade development/productivity workload completion time.
+
+**Metrics:** workload completion time, CPU, RAM, AI throughput.
+
+**Comparison:** workload alone versus the same workload with concurrent inference.
+
+**Decision:** supported if concurrent inference increases median workload completion time by at least **15%**.
+
+## Interpretation
+
+Allowed outcomes:
+
+- Supported
+- Partially supported
+- Not supported
+- Inconclusive
+
+A hypothesis is never supported solely because a result appears plausible.

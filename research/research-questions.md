@@ -4,36 +4,44 @@
 
 **How much practical performance and usability can be recovered from a constrained legacy workstation through zero-cost operating-system and software remediation?**
 
-## RQ1 — Operating-System Efficiency
+## RQ1 â€” Environment Transition
 
-How does replacing the existing Windows environment with a lightweight Linux desktop affect baseline resource utilization and system responsiveness?
+**What is the effect of replacing the existing Windows environment with a Linux Mint Xfce environment on resource utilization and system responsiveness?**
 
-## RQ2 — Remediation Effectiveness
+RQ1 evaluates the combined Windows â†’ Linux Mint Xfce transition. It does not independently attribute differences to Linux, Xfce, drivers or another individual component.
 
-Which individual remediation interventions produce the greatest measurable improvements in resource utilization and responsiveness?
+## RQ2 â€” Intervention Effectiveness
 
-## RQ3 — Local AI Feasibility
+**Which individual post-installation remediation interventions produce measurable improvements when compared against a defined Linux reference configuration?**
 
-Can aggressively quantized CPU-only local inference provide practically useful performance on the experimental hardware?
+RQ2 uses isolated intervention experiments where practical. The cumulative remediation track is reported separately.
 
-## RQ4 — Workload Trade-offs
+## RQ3 â€” Local AI Feasibility
 
-What trade-offs emerge when programming, productivity, gaming, and local AI workloads compete for the same constrained hardware resources?
+**Under a fixed offline workload, can a quantized CPU-only language model provide practically useful assistance on the experimental hardware?**
+
+A model configuration is considered practically usable only when all of these conditions are met:
+
+1. All mandatory offline tasks complete.
+2. Outputs satisfy task-specific correctness criteria.
+3. Median generation throughput is at least **5 tokens/second** for the defined coding workload.
+4. No system-level failure occurs.
+5. Basic workstation interaction remains possible during inference.
+
+The 5 tokens/second threshold is a study decision rule, not a universal definition of useful local inference.
+
+## RQ4 â€” Workload Trade-offs
+
+**What measurable resource and responsiveness trade-offs emerge when programming, productivity, gaming, and local AI workloads compete for the same constrained hardware?**
 
 ## Scope
 
-The study focuses on a single fixed workstation under a strict **$0 hardware expenditure constraint**.
+The experiment uses one fixed HP ProBook 640 G1 under a strict **$0 hardware expenditure constraint**.
 
-The results therefore describe the experimental system and should not automatically be generalized to other hardware.
+No hardware replacement is permitted during the primary experiment.
 
-## Success Criteria
+Results are treated as a single-system case study and are not automatically generalizable.
 
-The project is considered successful if it can:
+## Study completion criteria
 
-1. Establish a reproducible pre-remediation baseline.
-2. Apply documented remediation interventions.
-3. Quantify the effects of those interventions.
-4. Identify which optimizations materially matter.
-5. Identify optimizations that do not produce meaningful benefit.
-6. Establish the practical limits of local inference on the system.
-7. Produce reproducible evidence sufficient for independent inspection.
+The study is complete when required baselines, intervention records, raw data, reproducible analysis and limitations have been documented and unsupported claims removed.

@@ -1,41 +1,45 @@
 # Threats to Validity
 
-## Internal Validity
+## Internal validity
 
-The experimental machine may have transient processes, thermal variation, background tasks, or power-management behaviour that influence individual measurements.
+Transient processes, thermal variation, power management, memory state and HDD behaviour may affect measurements. Repetition and explicit reset procedures reduce but do not eliminate this risk.
 
-Repeated measurements and controlled test procedures are therefore preferred over single observations.
+## External validity
 
-## External Validity
+This is a single HP ProBook 640 G1 case study. Results should not automatically generalize to other systems.
 
-The experiment uses a single HP ProBook 640 G1.
+## Measurement validity
 
-Results should not be assumed to generalize to all legacy computers, all Haswell systems, or all Linux installations.
+Tools and workload definitions influence measurements. Exact methods are recorded.
 
-## Measurement Validity
+## Storage variability
 
-Different benchmarking tools and workload definitions can produce different measurements.
+Mechanical HDD performance can vary with disk state, fragmentation, temperature, caching and concurrent I/O.
 
-The repository therefore records the measurement method alongside results.
+## Software version drift
 
-## Hardware Health
+Kernel, graphics stack, compiler, runtime, application, AI runtime and model changes can affect results. Relevant versions are recorded.
 
-The mechanical HDD is an important potential confounding factor. A drive can appear operational without representing ideal or consistent performance.
+## Hardware health
 
-## Software Versioning
+Operational SMART status is evidence of observed condition at baseline, not a guarantee of future reliability.
 
-Operating-system updates, kernel versions, model versions, drivers, and application versions can influence results.
+## Researcher bias
 
-Relevant software versions should therefore be recorded for reproducibility.
+Successful interventions may be easier to notice than unsuccessful ones. Failed, neutral and negative interventions are therefore retained.
 
-## Researcher Bias
+## Single-system limitation
 
-Because the project is intended to demonstrate practical optimization, there is a risk of preferentially reporting successful changes.
+The strongest value of this case study is its methodology, engineering reasoning and evidence trail rather than population-level generalization.
 
-To reduce this bias, unsuccessful or negligible interventions should also be documented.
+## Threshold sensitivity
 
-## Single-Subject Limitation
+Decision thresholds are study-specific operational rules, not universal definitions of performance or usability.
 
-This is fundamentally a single-system case study rather than a population-level benchmark study.
+## Causal attribution
 
-Its strongest value is methodological and exploratory rather than universal performance generalization.
+Cumulative improvements cannot establish isolated intervention causality. Isolated causal claims require the isolated-intervention protocol.
+
+## AI evaluation
+
+Token throughput alone does not establish usefulness. AI evaluation therefore combines performance, task completion, correctness, memory and responsiveness.
