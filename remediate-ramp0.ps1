@@ -55,6 +55,17 @@ if (-not (Test-Path -LiteralPath (Join-Path $RepoRoot '.git') -PathType Containe
     throw 'Run this script from the root of the ramp-0 Git repository.'
 }
 
+$readmePath = Join-Path $RepoRoot 'README.md'
+$hasRampMarker = (Test-Path -LiteralPath $readmePath -PathType Leaf) -and ((Get-Content -LiteralPath $readmePath -TotalCount 1) -eq '# RAMP-0')
+$remoteUrl = git config --get remote.origin.url
+$hasRampRemote = ($LASTEXITCODE -eq 0) -and ($remoteUrl -match '(?i)(^|[/\\_.-])ramp-0([/\\_.-]|$)')
+if (-not ($hasRampMarker -or $hasRampRemote)) {
+    $confirmation = Read-Host 'RAMP-0 marker/remote not found. Type RAMP-0 to confirm this is the intended repository'
+    if ($confirmation -cne 'RAMP-0') {
+        throw 'Repository identity could not be verified; no files were changed.'
+    }
+}
+
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
 $BackupRoot = Join-Path $RepoRoot ".ramp0-backup-$stamp"
 New-Item -ItemType Directory -Path $BackupRoot -Force | Out-Null
@@ -78,7 +89,7 @@ foreach ($d in $dirs) { EnsureDir $d }
 
 Section 'Writing research protocol'
 
-WriteFile 'README.md' @"
+WriteFile 'README.md' @'
 # RAMP-0
 ## Resource-Aggressive Maximization of a Legacy Workstation
 
@@ -139,10 +150,10 @@ RAMP-0 uses two tracks:
 
 ### Evidence policy
 
-- **Observed** â€” directly measured or recorded.
-- **Verified** â€” checked against an authoritative or repeatable source.
-- **Inferred** â€” reasoned from observations.
-- **Unverified** â€” insufficient evidence currently exists.
+- **Observed** — directly measured or recorded.
+- **Verified** — checked against an authoritative or repeatable source.
+- **Inferred** — reasoned from observations.
+- **Unverified** — insufficient evidence currently exists.
 
 Expected performance is never presented as measured performance. Failed, neutral and negative interventions are retained.
 
@@ -152,35 +163,35 @@ Expected performance is never presented as measured performance. Failed, neutral
 
 ### Status
 
-**Phase 0 â€” Experimental protocol and baseline preparation**
+**Phase 0 — Experimental protocol and baseline preparation**
 
 No final performance claims have been made.
 
 ### Privacy
 
 Machine identifiers, product IDs, serial numbers, MAC addresses, credentials, personal files and other sensitive information are excluded from the public research record.
-"@
+'@
 
-WriteFile 'research\research-questions.md' @"
+WriteFile 'research\research-questions.md' @'
 # Research Questions
 
 ## Primary Research Question
 
 **How much practical performance and usability can be recovered from a constrained legacy workstation through zero-cost operating-system and software remediation?**
 
-## RQ1 â€” Environment Transition
+## RQ1 — Environment Transition
 
 **What is the effect of replacing the existing Windows environment with a Linux Mint Xfce environment on resource utilization and system responsiveness?**
 
-RQ1 evaluates the combined Windows â†’ Linux Mint Xfce transition. It does not independently attribute differences to Linux, Xfce, drivers or another individual component.
+RQ1 evaluates the combined Windows → Linux Mint Xfce transition. It does not independently attribute differences to Linux, Xfce, drivers or another individual component.
 
-## RQ2 â€” Intervention Effectiveness
+## RQ2 — Intervention Effectiveness
 
 **Which individual post-installation remediation interventions produce measurable improvements when compared against a defined Linux reference configuration?**
 
 RQ2 uses isolated intervention experiments where practical. The cumulative remediation track is reported separately.
 
-## RQ3 â€” Local AI Feasibility
+## RQ3 — Local AI Feasibility
 
 **Under a fixed offline workload, can a quantized CPU-only language model provide practically useful assistance on the experimental hardware?**
 
@@ -194,7 +205,7 @@ A model configuration is considered practically usable only when all of these co
 
 The 5 tokens/second threshold is a study decision rule, not a universal definition of useful local inference.
 
-## RQ4 â€” Workload Trade-offs
+## RQ4 — Workload Trade-offs
 
 **What measurable resource and responsiveness trade-offs emerge when programming, productivity, gaming, and local AI workloads compete for the same constrained hardware?**
 
@@ -209,14 +220,14 @@ Results are treated as a single-system case study and are not automatically gene
 ## Study completion criteria
 
 The study is complete when required baselines, intervention records, raw data, reproducible analysis and limitations have been documented and unsupported claims removed.
-"@
+'@
 
-WriteFile 'research\hypotheses.md' @"
+WriteFile 'research\hypotheses.md' @'
 # Hypotheses
 
 These are testable propositions, not assumed conclusions.
 
-## H1 â€” Lightweight Environment
+## H1 — Lightweight Environment
 
 **Proposition:** Replacing Windows with Linux Mint Xfce will reduce baseline resource overhead and improve selected responsiveness measures.
 
@@ -226,7 +237,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported only if Linux achieves both at least **15% lower median idle RAM** and at least **10% lower median boot time**. One criterion = partially supported. Neither = not supported.
 
-## H2 â€” Memory Pressure and HDD Swap Reduction
+## H2 — Memory Pressure and HDD Swap Reduction
 
 **Proposition:** zram will reduce HDD-backed swap activity during the defined memory-pressure workload.
 
@@ -236,7 +247,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported if zram reduces disk-backed swap usage by at least **50%** and measured HDD write activity by at least **20%**. One criterion = partially supported. Neither = not supported.
 
-## H3 â€” Background Workload Reduction
+## H3 — Background Workload Reduction
 
 **Proposition:** Removing non-essential startup/background workloads will reduce idle system activity without breaking required functions.
 
@@ -246,7 +257,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported if either median idle RAM or median idle CPU falls by at least **10%**, with no required-function failure.
 
-## H4 â€” Desktop Rendering Efficiency
+## H4 — Desktop Rendering Efficiency
 
 **Proposition:** Restrained XFCE compositor and visual effects will reduce rendering overhead on Intel HD Graphics 4600.
 
@@ -256,7 +267,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported only if measurable rendering-related overhead decreases with no loss of required desktop functionality. Subjective improvement alone is qualitative evidence.
 
-## H5 â€” Quantized Local AI Feasibility
+## H5 — Quantized Local AI Feasibility
 
 **Proposition:** At least one small quantized model configuration will execute the predefined offline workload within the available hardware envelope.
 
@@ -264,7 +275,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** a configuration is practically usable only when all RQ3 criteria are satisfied.
 
-## H6 â€” CPU Inference Limitation
+## H6 — CPU Inference Limitation
 
 **Proposition:** CPU-only inference will remain a dominant performance bottleneck after OS and model optimization.
 
@@ -272,7 +283,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported if inference is demonstrably CPU-bound, sustained CPU utilization approaches saturation, and generation remains below the practical-use target despite the selected model fitting the intended memory envelope.
 
-## H7 â€” Workload Contention
+## H7 — Workload Contention
 
 **Proposition:** Concurrent local AI inference will measurably degrade development/productivity workload completion time.
 
@@ -292,22 +303,22 @@ Allowed outcomes:
 - Inconclusive
 
 A hypothesis is never supported solely because a result appears plausible.
-"@
+'@
 
-WriteFile 'research\methodology.md' @"
+WriteFile 'research\methodology.md' @'
 # Methodology
 
 ## 1. Experimental design
 
 RAMP-0 uses two complementary tracks.
 
-### Track A â€” Cumulative remediation
+### Track A — Cumulative remediation
 
-The actual workstation progresses from B0 â†’ B1 â†’ B2 â†’ individual remediation stages â†’ final workstation.
+The actual workstation progresses from B0 → B1 → B2 → individual remediation stages → final workstation.
 
 Cumulative measurements describe the state of the complete system and do not establish isolated causal effects.
 
-### Track B â€” Isolated intervention experiments
+### Track B — Isolated intervention experiments
 
 Where RQ2 requires attribution, B2 is restored before a single intervention is tested.
 
@@ -330,8 +341,8 @@ B2 is frozen and documented before isolated experiments begin.
 
 ## 3. Attribution rules
 
-- B0 â†’ B1 measures the combined environment transition.
-- B2 â†’ isolated intervention measures the tested intervention under defined conditions.
+- B0 → B1 measures the combined environment transition.
+- B2 → isolated intervention measures the tested intervention under defined conditions.
 - Sequential measurements describe cumulative state.
 - Cumulative measurements must not be reported as isolated causal effects.
 - Infeasible isolation must be disclosed.
@@ -447,9 +458,9 @@ These results describe the finished system rather than attributing total change 
 Every significant result is labelled Observed, Verified, Inferred or Unverified.
 
 Expected results are never treated as observations.
-"@
+'@
 
-WriteFile 'research\experimental-protocol.md' @"
+WriteFile 'research\experimental-protocol.md' @'
 # RAMP-0 Experimental Protocol
 
 This is the operational lab manual.
@@ -552,9 +563,9 @@ Report N, median, min, max, mean where useful, raw observations, anomalies and e
 ## 18. Reproducibility
 
 The repository must preserve enough information to reconstruct the environment, workload, configuration, measurement procedure and raw observations.
-"@
+'@
 
-WriteFile 'research\threats-to-validity.md' @"
+WriteFile 'research\threats-to-validity.md' @'
 # Threats to Validity
 
 ## Internal validity
@@ -600,13 +611,13 @@ Cumulative improvements cannot establish isolated intervention causality. Isolat
 ## AI evaluation
 
 Token throughput alone does not establish usefulness. AI evaluation therefore combines performance, task completion, correctness, memory and responsiveness.
-"@
+'@
 
 # -------------------------------------------------------------------------
 # HARDWARE / BASELINE
 # -------------------------------------------------------------------------
 
-WriteFile 'hardware\hardware-inventory.md' @"
+WriteFile 'hardware\hardware-inventory.md' @'
 # Experimental Hardware Inventory
 
 | Component | Specification |
@@ -624,9 +635,9 @@ WriteFile 'hardware\hardware-inventory.md' @"
 ## Privacy boundary
 
 Do not publish device IDs, product IDs, serial numbers, MAC addresses, credentials, personal files or other unique identifiers.
-"@
+'@
 
-WriteFile 'hardware\firmware-state.md' @"
+WriteFile 'hardware\firmware-state.md' @'
 # Firmware State
 
 | Property | Baseline |
@@ -639,9 +650,9 @@ WriteFile 'hardware\firmware-state.md' @"
 | BIOS Date | 2018-01-25 |
 
 No BIOS/UEFI architecture conversion is part of the primary experiment.
-"@
+'@
 
-WriteFile 'hardware\health-diagnostics.md' @"
+WriteFile 'hardware\health-diagnostics.md' @'
 # Hardware Health Diagnostics
 
 ## HDD
@@ -659,9 +670,9 @@ The processor is an Intel Core i5-4310M from the Haswell generation. AVX2 capabi
 ## RAM
 
 Installed memory: **16 GB**.
-"@
+'@
 
-WriteFile 'baseline\windows\notes.md' @"
+WriteFile 'baseline\windows\notes.md' @'
 # Windows Baseline Notes
 
 Record the final Windows condition before migration.
@@ -685,9 +696,9 @@ Required:
 
 Do not publish product IDs, device IDs, MAC addresses, serial numbers or credentials.
 Raw unreviewed evidence belongs in `baseline/windows/raw/`.
-"@
+'@
 
-WriteFile 'baseline\linux\notes.md' @"
+WriteFile 'baseline\linux\notes.md' @'
 # Linux Baseline Notes
 
 ## B1
@@ -701,13 +712,13 @@ Stabilized Linux reference used for isolated intervention experiments.
 Record distribution/version, kernel, firmware, graphics stack, CPU/RAM/storage state, active services, startup state and benchmark-relevant software versions.
 
 Do not publish unique machine identifiers.
-"@
+'@
 
 # -------------------------------------------------------------------------
 # DATA / RESULTS / EXPERIMENT TEMPLATE
 # -------------------------------------------------------------------------
 
-WriteFile 'data\README.md' @"
+WriteFile 'data\README.md' @'
 # Experimental Data
 
 `data/raw/` contains original observations and should not be silently overwritten.
@@ -717,21 +728,21 @@ WriteFile 'data\README.md' @"
 Machine identifiers, credentials and personal files remain outside the public repository.
 
 > **Raw evidence is preserved; processed evidence is derived.**
-"@
+'@
 
-WriteFile 'results\README.md' @"
+WriteFile 'results\README.md' @'
 # Results
 
 Results are derived from experimental data.
 
 Every quantitative result should be traceable:
 
-`experiment â†’ raw data â†’ processing â†’ reported result`
+`experiment → raw data → processing → reported result`
 
 No major result should exist only as a manually typed number.
-"@
+'@
 
-$experimentTemplate = @"
+$experimentTemplate = @'
 # Experiment E-XXX
 
 ## Title
@@ -825,7 +836,7 @@ SUPPORTED / PARTIALLY SUPPORTED / NOT SUPPORTED / INCONCLUSIVE
 ## Evidence Classification
 
 Observed / Verified / Inferred / Unverified
-"@
+'@
 
 foreach ($name in @(
     'E-001-windows-baseline','E-002-linux-baseline','E-003-memory-pressure',
@@ -841,8 +852,8 @@ foreach ($name in @(
 # ADRs
 # -------------------------------------------------------------------------
 
-WriteFile 'decisions\ADR-001-linux-mint-xfce.md' @"
-# ADR-001 â€” Linux Mint Xfce
+WriteFile 'decisions\ADR-001-linux-mint-xfce.md' @'
+# ADR-001 — Linux Mint Xfce
 
 ## Status
 
@@ -870,11 +881,11 @@ Linux Mint Cinnamon; Debian Xfce; MX Linux Xfce; KDE Plasma; other lightweight e
 
 ## Experimental consequence
 
-RQ1 measures the combined Windows â†’ Linux Mint Xfce environment transition.
-"@
+RQ1 measures the combined Windows → Linux Mint Xfce environment transition.
+'@
 
-WriteFile 'decisions\ADR-002-filesystem.md' @"
-# ADR-002 â€” Filesystem
+WriteFile 'decisions\ADR-002-filesystem.md' @'
+# ADR-002 — Filesystem
 
 ## Status
 
@@ -886,7 +897,7 @@ The experimental platform uses a mechanical HDD.
 
 ## Decision
 
-Use a conventional Linux filesystem appropriate to the final installation design.
+Use ext4 for the Linux system and home filesystems, with the conventional separate `/boot` partition only if required by the installer. Use GPT partitioning with one ext4 root filesystem, one ext4 home filesystem, and a swapfile disabled during the B2 measurements; zram is evaluated separately in E-003. Keep mount options at the Linux Mint defaults, including `relatime`, for B1 and B2.
 
 ## Evidence
 
@@ -895,10 +906,10 @@ Use a conventional Linux filesystem appropriate to the final installation design
 ## Trade-offs
 
 [Record.]
-"@
+'@
 
-WriteFile 'decisions\ADR-003-zram.md' @"
-# ADR-003 â€” zram
+WriteFile 'decisions\ADR-003-zram.md' @'
+# ADR-003 — zram
 
 ## Status
 
@@ -914,11 +925,31 @@ Evaluate zram as an isolated intervention against B2.
 
 ## Measurement
 
-`experiments/E-003-memory-pressure/`
-"@
+The primary evaluation is defined in `experiments/E-003-memory-pressure/`.
 
-WriteFile 'decisions\ADR-004-local-ai-runtime.md' @"
-# ADR-004 â€” Local AI Runtime
+## Control
+
+B2 without zram is the control. Keep the ext4 mount configuration, power state, application set, workload inputs and software versions unchanged between configurations. Disable zram and verify that no zram device is active before each control run.
+
+## Intervention
+
+Enable one zram device using the selected Linux Mint zram configuration, record its algorithm and size, and verify the active compressed-swap device before each intervention run. Do not change any other B2 setting.
+
+## Workload
+
+Use the same memory-pressure workload for both configurations: start from the stabilized desktop, launch the defined application set, allocate memory until the pre-defined pressure target is reached, hold that target for the fixed duration, then complete the workload. Record initial and peak RAM, zram usage, disk-backed swap, swap-in/out, major page faults, HDD reads/writes, duration and completion.
+
+## Reset procedure
+
+After every run, stop the workload and applications, disable zram, turn off any remaining swap device, clear the recorded state, reboot, restore B2, verify the control or intervention configuration, and allow the defined stabilization period before the next run.
+
+## Pass/fail criteria
+
+Compare five valid runs per configuration using medians. Pass H2 when zram reduces disk-backed swap usage by at least 50% and measured HDD write activity by at least 20%; one threshold met is a partial pass, and neither threshold met is a fail. Retain failed runs and report planned, valid, failed and excluded runs separately.
+'@
+
+WriteFile 'decisions\ADR-004-local-ai-runtime.md' @'
+# ADR-004 — Local AI Runtime
 
 ## Status
 
@@ -939,10 +970,10 @@ Evaluate a reproducible CPU-oriented inference runtime using a quantized model f
 ## Trade-offs
 
 [Record.]
-"@
+'@
 
-WriteFile 'decisions\ADR-005-model-selection.md' @"
-# ADR-005 â€” Model Selection
+WriteFile 'decisions\ADR-005-model-selection.md' @'
+# ADR-005 — Model Selection
 
 ## Status
 
@@ -963,7 +994,7 @@ The model remains fixed during OS/runtime comparisons and varies only in the mod
 ## Evidence
 
 [Record exact model source/revision and quantization.]
-"@
+'@
 
 # -------------------------------------------------------------------------
 # GITIGNORE
@@ -1068,14 +1099,20 @@ Section 'Validation'
 
 Write-Host '[1/4] Git status' -ForegroundColor Cyan
 git status --short
+$gitStatusExit = $LASTEXITCODE
+if ($gitStatusExit -ne 0) { throw "git status --short failed with exit code $gitStatusExit." }
 
 Write-Host ''
 Write-Host '[2/4] Whitespace validation' -ForegroundColor Cyan
 git diff --check
+$gitDiffCheckExit = $LASTEXITCODE
+if ($gitDiffCheckExit -ne 0) { throw "git diff --check failed with exit code $gitDiffCheckExit." }
 
 Write-Host ''
 Write-Host '[3/4] Changed paths' -ForegroundColor Cyan
 git diff --name-only
+$gitNameOnlyExit = $LASTEXITCODE
+if ($gitNameOnlyExit -ne 0) { throw "git diff --name-only failed with exit code $gitNameOnlyExit." }
 
 Write-Host ''
 Write-Host '[4/4] Repository root' -ForegroundColor Cyan

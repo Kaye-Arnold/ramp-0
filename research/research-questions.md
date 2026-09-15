@@ -4,19 +4,19 @@
 
 **How much practical performance and usability can be recovered from a constrained legacy workstation through zero-cost operating-system and software remediation?**
 
-## RQ1 â€” Environment Transition
+## RQ1 — Environment Transition
 
 **What is the effect of replacing the existing Windows environment with a Linux Mint Xfce environment on resource utilization and system responsiveness?**
 
-RQ1 evaluates the combined Windows â†’ Linux Mint Xfce transition. It does not independently attribute differences to Linux, Xfce, drivers or another individual component.
+RQ1 evaluates the combined Windows → Linux Mint Xfce transition. It does not independently attribute differences to Linux, Xfce, drivers or another individual component.
 
-## RQ2 â€” Intervention Effectiveness
+## RQ2 — Intervention Effectiveness
 
 **Which individual post-installation remediation interventions produce measurable improvements when compared against a defined Linux reference configuration?**
 
 RQ2 uses isolated intervention experiments where practical. The cumulative remediation track is reported separately.
 
-## RQ3 â€” Local AI Feasibility
+## RQ3 — Local AI Feasibility
 
 **Under a fixed offline workload, can a quantized CPU-only language model provide practically useful assistance on the experimental hardware?**
 
@@ -30,7 +30,7 @@ A model configuration is considered practically usable only when all of these co
 
 The 5 tokens/second threshold is a study decision rule, not a universal definition of useful local inference.
 
-## RQ4 â€” Workload Trade-offs
+## RQ4 — Workload Trade-offs
 
 **What measurable resource and responsiveness trade-offs emerge when programming, productivity, gaming, and local AI workloads compete for the same constrained hardware?**
 

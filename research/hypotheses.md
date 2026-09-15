@@ -2,7 +2,7 @@
 
 These are testable propositions, not assumed conclusions.
 
-## H1 â€” Lightweight Environment
+## H1 — Lightweight Environment
 
 **Proposition:** Replacing Windows with Linux Mint Xfce will reduce baseline resource overhead and improve selected responsiveness measures.
 
@@ -10,9 +10,10 @@ These are testable propositions, not assumed conclusions.
 
 **Comparison:** B0 versus B1.
 
-**Decision:** supported only if Linux achieves both at least **15% lower median idle RAM** and at least **10% lower median boot time**. One criterion = partially supported. Neither = not supported.
+**Decision:** supported only if Linux achieves both at least **15% lower median idle RAM** and at least **10% lower median boot time**. One criterion met = partially supported.
 
-## H2 â€” Memory Pressure and HDD Swap Reduction
+
+## H2 — Memory Pressure and HDD Swap Reduction
 
 **Proposition:** zram will reduce HDD-backed swap activity during the defined memory-pressure workload.
 
@@ -20,9 +21,9 @@ These are testable propositions, not assumed conclusions.
 
 **Comparison:** B2 without zram versus equivalent B2 with zram.
 
-**Decision:** supported if zram reduces disk-backed swap usage by at least **50%** and measured HDD write activity by at least **20%**. One criterion = partially supported. Neither = not supported.
+**Decision:** supported if zram reduces disk-backed swap usage by at least **50%** and measured HDD write activity by at least **20%**. Neither criterion met = not supported.
 
-## H3 â€” Background Workload Reduction
+## H3 — Background Workload Reduction
 
 **Proposition:** Removing non-essential startup/background workloads will reduce idle system activity without breaking required functions.
 
@@ -32,7 +33,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported if either median idle RAM or median idle CPU falls by at least **10%**, with no required-function failure.
 
-## H4 â€” Desktop Rendering Efficiency
+## H4 — Desktop Rendering Efficiency
 
 **Proposition:** Restrained XFCE compositor and visual effects will reduce rendering overhead on Intel HD Graphics 4600.
 
@@ -42,7 +43,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported only if measurable rendering-related overhead decreases with no loss of required desktop functionality. Subjective improvement alone is qualitative evidence.
 
-## H5 â€” Quantized Local AI Feasibility
+## H5 — Quantized Local AI Feasibility
 
 **Proposition:** At least one small quantized model configuration will execute the predefined offline workload within the available hardware envelope.
 
@@ -50,7 +51,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** a configuration is practically usable only when all RQ3 criteria are satisfied.
 
-## H6 â€” CPU Inference Limitation
+## H6 — CPU Inference Limitation
 
 **Proposition:** CPU-only inference will remain a dominant performance bottleneck after OS and model optimization.
 
@@ -58,7 +59,7 @@ These are testable propositions, not assumed conclusions.
 
 **Decision:** supported if inference is demonstrably CPU-bound, sustained CPU utilization approaches saturation, and generation remains below the practical-use target despite the selected model fitting the intended memory envelope.
 
-## H7 â€” Workload Contention
+## H7 — Workload Contention
 
 **Proposition:** Concurrent local AI inference will measurably degrade development/productivity workload completion time.
 

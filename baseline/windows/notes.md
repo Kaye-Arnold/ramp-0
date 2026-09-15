@@ -20,4 +20,4 @@ Required:
 - benchmark-relevant software versions
 
 Do not publish product IDs, device IDs, MAC addresses, serial numbers or credentials.
-Raw unreviewed evidence belongs in aseline/windows/raw/.
+Raw unreviewed evidence belongs in `baseline/windows/raw/`. This is the local raw-evidence location; it is intentionally separate from the public `data/raw/` directory, which contains sanitized observations.

@@ -1,4 +1,4 @@
-# ADR-001 â€” Linux Mint Xfce
+# ADR-001 — Linux Mint Xfce
 
 ## Status
 
@@ -26,4 +26,4 @@ Linux Mint Cinnamon; Debian Xfce; MX Linux Xfce; KDE Plasma; other lightweight e
 
 ## Experimental consequence
 
-RQ1 measures the combined Windows â†’ Linux Mint Xfce environment transition.
+RQ1 measures the combined Windows → Linux Mint Xfce environment transition.

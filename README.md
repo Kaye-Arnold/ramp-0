@@ -58,10 +58,10 @@ RAMP-0 uses two tracks:
 
 ### Evidence policy
 
-- **Observed** â€” directly measured or recorded.
-- **Verified** â€” checked against an authoritative or repeatable source.
-- **Inferred** â€” reasoned from observations.
-- **Unverified** â€” insufficient evidence currently exists.
+- **Observed** — directly measured or recorded.
+- **Verified** — checked against an authoritative or repeatable source.
+- **Inferred** — reasoned from observations.
+- **Unverified** — insufficient evidence currently exists.
 
 Expected performance is never presented as measured performance. Failed, neutral and negative interventions are retained.
 
@@ -71,7 +71,7 @@ Expected performance is never presented as measured performance. Failed, neutral
 
 ### Status
 
-**Phase 0 â€” Experimental protocol and baseline preparation**
+**Phase 0 — Experimental protocol and baseline preparation**
 
 No final performance claims have been made.
 

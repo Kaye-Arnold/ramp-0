@@ -27,7 +27,7 @@ Before each experiment record date/time, power state, OS/version, kernel, CPU st
 
 ## 4. Default repetition
 
-**N = 5 quantitative runs per configuration.**
+**N = 5 valid quantitative runs per configuration.** Five is the target number of valid completed runs, not the number of planned attempts. Report planned attempts, valid runs, failed runs and excluded runs separately for every configuration. Failed runs remain in the research record and are not silently discarded; an excluded run must include its original data, reason, rule and impact.
 
 ## 5. Boot benchmark
 

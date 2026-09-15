@@ -1,4 +1,4 @@
-# ADR-004 â€” Local AI Runtime
+# ADR-004 — Local AI Runtime
 
 ## Status
 

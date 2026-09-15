@@ -1,4 +1,4 @@
-# ADR-005 â€” Model Selection
+# ADR-005 — Model Selection
 
 ## Status
 

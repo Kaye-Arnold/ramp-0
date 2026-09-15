@@ -4,13 +4,13 @@
 
 RAMP-0 uses two complementary tracks.
 
-### Track A â€” Cumulative remediation
+### Track A — Cumulative remediation
 
-The actual workstation progresses from B0 â†’ B1 â†’ B2 â†’ individual remediation stages â†’ final workstation.
+The actual workstation progresses from B0 → B1 → B2 → individual remediation stages → final workstation.
 
 Cumulative measurements describe the state of the complete system and do not establish isolated causal effects.
 
-### Track B â€” Isolated intervention experiments
+### Track B — Isolated intervention experiments
 
 Where RQ2 requires attribution, B2 is restored before a single intervention is tested.
 
@@ -33,8 +33,8 @@ B2 is frozen and documented before isolated experiments begin.
 
 ## 3. Attribution rules
 
-- B0 â†’ B1 measures the combined environment transition.
-- B2 â†’ isolated intervention measures the tested intervention under defined conditions.
+- B0 → B1 measures the combined environment transition.
+- B2 → isolated intervention measures the tested intervention under defined conditions.
 - Sequential measurements describe cumulative state.
 - Cumulative measurements must not be reported as isolated causal effects.
 - Infeasible isolation must be disclosed.
