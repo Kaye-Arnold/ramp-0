@@ -1,0 +1,40 @@
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Credentials
+credentials.json
+secrets.json
+
+# OS / editor
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Large/generated data
+*.iso
+*.img
+*.raw
+*.vdi
+*.vmdk
+*.qcow2
+
+# Personal/system identifiers
+device-identifiers.txt
+mac-addresses.txt
+serial-numbers.txt
