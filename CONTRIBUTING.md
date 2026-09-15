@@ -66,7 +66,7 @@ Examples:
 
 ## Pull Requests
 
-A substantive pull request should explain:
+A substantive pull request must explain:
 
 1. what changed
 2. why it changed

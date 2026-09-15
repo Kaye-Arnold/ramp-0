@@ -34,7 +34,7 @@ Repository documents describe the study but do not replace original measurement 
 
 ## 4. Experimental Integrity
 
-Before primary data collection, the applicable protocol should define:
+Before primary data collection, the applicable protocol must define all of the following controls, or a documented exception must be approved before collection begins:
 
 - hypothesis
 - control and intervention
@@ -55,7 +55,7 @@ Changes made after data collection must be explicitly versioned and must not sil
 
 A cumulative system transition may establish an environmental effect but does not independently establish the causal effect of every individual intervention.
 
-Individual interventions should therefore use isolated comparisons where causal attribution is required.
+Individual interventions must use isolated comparisons where causal attribution is required. When isolation is not performed, the result must be labeled as environmental or inferred and must not be presented as an individual causal attribution.
 
 ## 6. Run Integrity
 
